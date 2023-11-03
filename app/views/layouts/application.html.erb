@@ -13,6 +13,16 @@
     <header>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <nav>
+        <div>
+          <% if owner_signed_in? %>
+              <%=current_owner.email%>
+              <%=button_to  "Sair", destroy_owner_session_path, method: :delete%>
+            <% else %>
+              <%=link_to  "Entrar", login_index_path%>
+          <% end %>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>
