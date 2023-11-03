@@ -1,0 +1,47 @@
+
+
+<% if current_owner.inn.nil? %>
+<%= link_to  "Criar pousada", new_inn_path %>
+  <h3>Cadastre uma pousada</h3>
+  <% else %>
+
+  <h1><%=@inn.brand_name%></h1>
+  <div>
+    <dl>
+      <dt>Razão Social: </dt>
+      <dd><%=@inn.corporate_name%></dd>
+      <dt>CNPJ: </dt>
+      <dd><%=@inn.registration_number%></dd>
+      <dt>Telefone: </dt>
+      <dd><%=@inn.phone%></dd>
+      <dt>E-mail: </dt>
+      <dd><%=@inn.email%></dd>
+      <dt>Endereço completo:</dt>
+      <dd><%=@inn.full_address%></dd>
+      <dt>CEP:</dt>
+      <dd><%=@inn.cep%></dd>
+      <dt>Formas de Pagamento:</dt>
+      <dd><%=@inn.payment_options%></dd>
+      <dt>Aceita Animais:</dt>
+      <dd><%=@inn.pets%></dd>
+      <dt>Horarios:</dt>
+      <dd>Chekc-in: <%=@inn.check_in%></dd>
+      <dd>Chekc-out: <%=@inn.check_out%></dd>
+      <dt>Politicas:</dt>
+      <dd><%=@inn.policies%></dd>
+      <dt>Descrição:</dt>
+      <dd><%=@inn.description%></dd>      
+    </dl>
+  </div>
+  <div>Status: <%=@inn.status%></div>
+
+  <div>
+    <% if @inn.published? %>
+      <%= button_to  "Esconder", hidden_inn_path(@inn.id), {method: 'patch'}%>
+    <% else %>
+        <%= button_to  "Publicar", publish_inn_path(@inn.id), {method: 'patch'}%>
+    <% end %>
+  </div>
+
+  
+<% end %>

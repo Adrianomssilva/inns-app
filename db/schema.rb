@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_03_012243) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_201011) do
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -24,11 +24,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_03_012243) do
     t.string "cep"
     t.integer "owner_id", null: false
     t.text "description"
-    t.string "paymente_options"
+    t.string "payment_options"
     t.string "pets"
     t.text "policies"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "check_in"
+    t.string "check_out"
+    t.integer "status", default: 0
     t.index ["owner_id"], name: "index_inns_on_owner_id"
   end
 
