@@ -15,6 +15,10 @@ class InnsController < ApplicationController
 
   end
 
+  def edit
+
+  end
+
   def my_inn
     @inn = current_owner.inn
   end
