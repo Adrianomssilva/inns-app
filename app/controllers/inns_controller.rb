@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-  before_action :authenticate_owner!, only: [:new, :create, :my_inn]
+  before_action :authenticate_owner!, only: [:new, :create, :my_inn, :edit, :update]
   def new
     @inn = Inn.new
   end
@@ -16,6 +16,22 @@ class InnsController < ApplicationController
   end
 
   def edit
+    @inn = Inn.find(params[:id])
+    if @inn.owner != current_owner
+      redirect_to root_path, notice: 'Você não tem acesso a essa Pousada'
+    end
+  end
+
+  def update
+    @inn = Inn.find(params[:id])
+
+    if @inn.update(inn_params)
+      redirect_to my_inn_path, notice: 'Pousada editada com sucesso.'
+
+    else
+      flash.now[:notice] = 'Não foi possível editar a pousada.'
+      render 'edit'
+    end
 
   end
 
