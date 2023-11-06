@@ -1,6 +1,17 @@
 <h2>Bem vindo a Inns</h2>
 
 
-<div>
-  
+
+<div>Pousadas
+
+<%@inns.each do |inn|%>
+  <dl>
+    <dt>Nome:</dt>
+    <dd><%=inn.brand_name %></dd>
+    <dt>Endereço completo:</dt>
+    <dd><%=inn.full_address %></dd>
+    <dt>Aceita Pets:</dt>
+    <dd><%=inn.pets %></dd>
+  </dl>
+  <% end %>
 </div>

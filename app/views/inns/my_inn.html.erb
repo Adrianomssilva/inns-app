@@ -35,15 +35,14 @@
   </div>
   <div>Status: <%=@inn.status%></div>
 
-  <div>
-    <%= link_to  "Editar", edit_inn_path(@inn) %>
-  </div>
+
   <div>
     <% if @inn.published? %>
       <%= button_to  "Esconder", hidden_inn_path(@inn.id), {method: 'patch'}%>
     <% else %>
         <%= button_to  "Publicar", publish_inn_path(@inn.id), {method: 'patch'}%>
     <% end %>
+    <%= link_to  "Editar", edit_inn_path(@inn) %>
   </div>
 
   
