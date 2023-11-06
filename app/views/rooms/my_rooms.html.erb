@@ -1,0 +1,46 @@
+<h2>Meus Quartos</h2>
+<%= link_to  "Adicionar quarto", new_room_path %>
+<% if current_owner.inn.rooms.empty? %>
+  <h3>Adicione quartos!</h3>
+<% else %>
+  
+    <%@rooms.each do |room|%>
+    <div>
+      <dl>
+        <dt>Quarto:</dt>
+        <dd><%=room.name%></dd>
+        <dt>Descrição:</dt>
+        <dd><%=room.description%></dd>
+        <dt>Capacidade:</dt>
+        <dd><%=room.capacity%></dd>
+        <dt>Preço padrão:</dt>
+        <dd><%=room.default_price%></dd>
+        <dt>Dimensões:</dt>
+        <dd><%=room.dimension%></dd>
+        <dt>Banheiro Próprio:</dt>
+        <dd><%=room.bathroom%></dd>
+        <dt>Varanda:</dt>
+        <dd><%=room.balcony%></dd>
+        <dt>Ar-condicionado:</dt>
+        <dd><%=room.air_conditioning%></dd>
+        <dt>Tv:</dt>
+        <dd><%=room.tv%></dd>
+        <dt>Guarda roupa:</dt>
+        <dd><%=room.wardrobe%></dd>
+        <dt>Cofre:</dt>
+        <dd><%=room.safe%></dd>
+        <dt>Acesso PCD:</dt>
+        <dd><%=room.pcd%></dd>
+      </dl>
+      <%= link_to  "Editar quarto", edit_room_path(room.id) %>
+      <div>
+        Satus : <%=room.status%>
+        <% if room.available? %>
+          <%= button_to  "Indisponível", unavailable_room_path(room.id), {method: 'patch'}%>
+        <% else %>
+          <%= button_to  "Disponível", available_room_path(room.id), {method: 'patch'}%>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

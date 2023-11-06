@@ -1,0 +1,17 @@
+<h2><%=@inn.brand_name%></h2>
+
+<div>
+  <%@inn.rooms.each do |room|%>
+    <% if room.available? %>
+      <dl>
+        <dt><%=room.name%></dt>
+        <dt>Descrição:</dt>
+        <dd><%=room.description%></dd>
+        <dt>Capacidade:</dt>
+        <dd><%=room.capacity%></dd>
+        <dt>Preço padrão:</dt>
+        <dd><%=room.default_price%></dd>
+      </dl>
+    <% end %>
+  <% end %>
+</div>

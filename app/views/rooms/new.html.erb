@@ -1,0 +1,64 @@
+<h2>Adicione um novo quarto</h2>
+
+<% if @room.errors.any? %>
+  <p>Verifique os erros abaixo</p>
+  <ul>
+    <%@room.errors.full_messages.each do |msg|%>
+      <li><%=msg%></li>
+      <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @room) do |f| %>
+  <div>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description%>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :dimension%>
+    <%= f.text_field :dimension %>
+  </div>
+  <div>
+    <%= f.label :capacity%>
+    <%= f.text_field :capacity %>
+  </div>
+  <div>
+    <%= f.label :default_price%>
+    <%= f.text_field :default_price %>
+  </div>
+  <div>
+    <%= f.label :bathroom%>
+    <%= f.select :bathroom, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :balcony%>
+    <%= f.select :balcony, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :air_conditioning%>
+    <%= f.select :air_conditioning, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :tv%>
+    <%= f.select :tv, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :wardrobe%>
+    <%= f.select :wardrobe, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :safe%>
+    <%= f.select :safe, ['Sim', 'Não'] %>
+  </div>
+  <div>
+    <%= f.label :pcd%>
+    <%= f.select :pcd, ['Sim', 'Não'] %>
+  </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>

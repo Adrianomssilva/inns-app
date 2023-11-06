@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Proprietário cria sua pousada" do
 
-  it "chega ne página de cadastro" do
+  it "chega na página de cadastro" do
     # Arrange
     owner = Owner.create!(name: 'Bianca', email:'bianca@email.com', password: 'password')
 

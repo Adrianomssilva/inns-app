@@ -7,7 +7,7 @@
 <%@inns.each do |inn|%>
   <dl>
     <dt>Nome:</dt>
-    <dd><%=inn.brand_name %></dd>
+    <dd><%=link_to inn.brand_name, inn_path(inn.id) %>, </dd>
     <dt>Endereço completo:</dt>
     <dd><%=inn.full_address %></dd>
     <dt>Aceita Pets:</dt>

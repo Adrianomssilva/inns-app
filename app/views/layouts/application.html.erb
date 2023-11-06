@@ -16,6 +16,7 @@
       <h1>Encontre a Pousada perfeita</h1>
       <nav>
         <div>
+          <%= link_to  "Home", root_path %>
           <% if owner_signed_in? %>
               <%=current_owner.email%>
               <%= link_to  "Minha pousada", my_inn_path %>

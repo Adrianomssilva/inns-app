@@ -1,5 +1,6 @@
 class Inn < ApplicationRecord
   belongs_to :owner
+  has_many :rooms
   validates :owner , uniqueness: true
   validates :brand_name, :corporate_name, :registration_number, :phone,
             :email, :address, :neighborhood, :city, :state, :description,

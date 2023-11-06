@@ -1,10 +1,11 @@
 
-
+<div>
+  
 <% if current_owner.inn.nil? %>
 <%= link_to  "Criar pousada", new_inn_path %>
   <h3>Cadastre uma pousada</h3>
+  </div>
   <% else %>
-
   <h1><%=@inn.brand_name%></h1>
   <div>
     <dl>
@@ -43,7 +44,29 @@
         <%= button_to  "Publicar", publish_inn_path(@inn.id), {method: 'patch'}%>
     <% end %>
     <%= link_to  "Editar", edit_inn_path(@inn) %>
-  </div>
+  </div>`
+  
+  
+
+<div>
+  <%= link_to  "Quartos", my_rooms_path %>
+  <div>
+    <% if @inn.rooms.empty? %>
+      <p>Clique em Quartos e adicione quartos!</p>
+    <% else %>
+      <%@inn.rooms.each do |room|%>
+          <dl>
+            <dt>Quarto:</dt>
+            <dd><%=room.name%></dd>
+            <dt>Descrição:</dt>
+            <dd><%=room.description%></dd>
+            <dt>Capacidade:</dt>
+            <dd><%=room.capacity%></dd>
+            <dt>Preço padrão:</dt>
+            <dd><%=room.default_price%></dd>
+          </dl>
+      <% end %>
+    <% end %>
 
   
 <% end %>

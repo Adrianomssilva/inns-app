@@ -12,7 +12,10 @@ class InnsController < ApplicationController
     else
       flash.now[:notice] = 'Não foi possível cadastrar a pousada'
     end
+  end
 
+  def show
+    @inn = Inn.find(params[:id])
   end
 
   def edit
