@@ -14,8 +14,7 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <h1>Encontre a Pousada perfeita</h1>
-      <nav>
-        <div>
+      <nav class= "menu">
           <%= link_to  "Home", root_path %>
           <% if owner_signed_in? %>
               <%=current_owner.email%>
@@ -24,7 +23,6 @@
             <% else %>
               <%=link_to  "Entrar", login_index_path%>
           <% end %>
-        </div>
       </nav>
     </header>
     <%= yield %>

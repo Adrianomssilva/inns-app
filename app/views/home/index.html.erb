@@ -1,17 +1,31 @@
 <h2>Bem vindo a Inns</h2>
 
+<div class="pousadas">
+  <h3>Pousadas Recentes</h3>
+  <%@inns.last(3).each do |inn|%>
+    <div class="pousada">
+      <h3><%=link_to inn.brand_name, inn_path(inn.id) %></h3>
+      <dl>
+        <dt>Cidade: </dt>
+        <dd><%=inn.city %></dd>
+      </dl>
+    <% end %>
+    </div>
+</div>
 
-
-<div>Pousadas
-
-<%@inns.each do |inn|%>
-  <dl>
-    <dt>Nome:</dt>
-    <dd><%=link_to inn.brand_name, inn_path(inn.id) %>, </dd>
-    <dt>Endereço completo:</dt>
-    <dd><%=inn.full_address %></dd>
-    <dt>Aceita Pets:</dt>
-    <dd><%=inn.pets %></dd>
-  </dl>
+<div class="pousadas">
+  <h3>Pousadas</h3>
+  <%@inns.each do |inn|%>
+    <% if inn.presence_in(@inns.last(3))  %>
+    
+    <% else %>
+    <div class="pousada">
+      <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
+      <dl>
+        <dt>Cidade: </dt>
+        <dd><%=inn.city %></dd>
+      </dl>
+      <% end %>
   <% end %>
+    </div>
 </div>
