@@ -14,7 +14,6 @@ class PricesController < ApplicationController
     flash.now[:notice] = "Não foi possível carregar o preço"
     render 'new'
     end
-
   end
 
 

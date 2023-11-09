@@ -33,9 +33,9 @@ describe "Usuário visita home" do
     visit root_path
 
     #Assert
-    expect(page).to have_content 'Nome: Pousada Alegre'
-    expect(page).to have_content 'Endereço completo: rua da praia bela, Stella, Salvador, BA'
-    expect(page).not_to have_content 'Nome: Pousada feliz'
+    expect(page).to have_content 'Pousada Alegre'
+    expect(page).to have_content 'Cidade: Salvador'
+    expect(page).not_to have_content 'Pousada feliz'
 
   end
 
