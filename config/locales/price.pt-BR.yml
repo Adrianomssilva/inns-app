@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      price: 'Preço'
+    attributes:
+      price:
+        date_start: 'Data início'
+        date_end: 'Data fim'
+        value: 'Valor'

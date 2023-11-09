@@ -32,6 +32,20 @@
         <dt>Acesso PCD:</dt>
         <dd><%=room.pcd%></dd>
       </dl>
+      <div>
+        <%= link_to  "Preços personalizados", new_room_price_path(room_id: room.id) %>
+        <% if room.prices.empty? %>
+          <p>Não existem preços cadastrados</p>
+        <% else %>
+          <%room.prices.each do |price|%>
+            <p>
+              <strong>Valor:</strong> <%=price.value%> |
+                <strong>Data início:</strong> <%=price.date_start%> |
+                  <strong>Data fim:</strong> <%=price.date_end%>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
       <%= link_to  "Editar quarto", edit_room_path(room.id) %>
       <div>
         Satus : <%=room.status%>
