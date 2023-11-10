@@ -1,6 +1,30 @@
 <h2><%=@inn.brand_name%></h2>
 
-<div>
+<div class="detalhado">
+  <dl>
+      <dt>Telefone: </dt>
+      <dd><%=@inn.phone%></dd>
+      <dt>E-mail: </dt>
+      <dd><%=@inn.email%></dd>
+      <dt>Endereço completo:</dt>
+      <dd><%=@inn.full_address%></dd>
+      <dt>CEP:</dt>
+      <dd><%=@inn.cep%></dd>
+      <dt>Formas de Pagamento:</dt>
+      <dd><%=@inn.payment_options%></dd>
+      <dt>Aceita Animais:</dt>
+      <dd><%=@inn.pets%></dd>
+      <dt>Horarios:</dt>
+      <dd>Chekc-in: <%=@inn.check_in%></dd>
+      <dd>Chekc-out: <%=@inn.check_out%></dd>
+      <dt>Politicas:</dt>
+      <dd><%=@inn.policies%></dd>
+      <dt>Descrição:</dt>
+      <dd><%=@inn.description%></dd>      
+    </dl>
+</div>
+
+<div class = "quartos">
   <%@rooms.each do |room|%>
       <dl>
         <dt><%=room.name%></dt>
