@@ -25,15 +25,32 @@
 </div>
 
 <div class = "quartos">
+  <h3>Quartos</h3>
   <%@rooms.each do |room|%>
       <dl>
         <dt><%=room.name%></dt>
         <dt>Descrição:</dt>
-        <dd><%=room.description%></dd>
+        <dd><%=room.description%> </dd>
+        <dt>Tamanho:</dt>
+        <dd><%=room.dimension%> m²</dd>
         <dt>Capacidade:</dt>
         <dd><%=room.capacity%></dd>
         <dt>Preço padrão:</dt>
         <dd><%=room.default_price%></dd>
+        <dt>Banheiro:</dt>
+        <dd><%=room.bathroom%></dd>
+        <dt>Varanda:</dt>
+        <dd><%=room.balcony%></dd>
+        <dt>Ar-condicionado:</dt>
+        <dd><%=room.air_conditioning%></dd>
+        <dt>Tv:</dt>
+        <dd><%=room.tv%></dd>
+        <dt>Guarda roupa:</dt>
+        <dd><%=room.wardrobe%></dd>
+        <dt>Cofre:</dt>
+        <dd><%=room.safe%></dd>
+        <dt>Acesso a PCD:</dt>
+        <dd><%=room.pcd%></dd>
       </dl> 
   <% end %>
 </div>
