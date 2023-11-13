@@ -1,7 +1,7 @@
 <h2>Bem vindo a Inns</h2>
 
 <div class="btn-menu">
-  <%=@cities.each do |inn|%>
+  <%@cities.each do |inn|%>
   <%= button_to  "#{inn.city}", search_inns_path, params: {query: "#{inn.city}"}, method: :get %>
   <% end %>
 </div>
