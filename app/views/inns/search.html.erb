@@ -1,0 +1,15 @@
+<%="Resultado da busca por: #{@query}"%>
+
+
+
+<div class="pousadas">
+  <h3>Pousadas</h3>
+  <%@inns.each do |inn|%>
+    <div class="pousada">
+      <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
+      <dl>
+        <dt>Cidade: </dt>
+        <dd><%=inn.city %></dd>
+      </dl>
+  <% end %>
+    </div>

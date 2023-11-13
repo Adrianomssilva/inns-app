@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :login , only: [:index]
   get 'minha-pousada' , to: 'inns#my_inn', as: 'my_inn'
-  resources :inns , only: [:new, :create, :edit, :update, :show] do
+  resources :inns , only: [:new, :create, :edit, :update, :show,] do
+    get 'search', on: :collection
     patch 'publish', on: :member
     patch 'hidden', on: :member
   end
