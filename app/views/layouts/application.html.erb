@@ -15,7 +15,12 @@
       <p class="alert"><%= alert %></p>
       <h1>Encontre a Pousada perfeita</h1>
       <nav class= "menu">
-          <%= link_to  "Home", root_path %>
+          <%= link_to  "Home", root_path %> | 
+          <%= form_with(url: search_inns_path, method: :get ) do |f| %>
+            <%= f.label :query, 'Buscar Pousada' %>
+            <%= f.text_field :query%>
+            <%= f.submit 'Buscar'%>
+          <% end %>
           <% if owner_signed_in? %>
               <%=current_owner.email%>
               <%= link_to  "Minha pousada", my_inn_path %>

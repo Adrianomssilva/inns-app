@@ -11,7 +11,7 @@ describe "Usuário faz login como proprietário" do
   click_on 'Proprietário'
   fill_in "E-mail",	with: "adriano3@email.com"
   fill_in "Senha",	with: "password"
-  within ('form') do
+  within ('div.actions') do
     click_on 'Entrar'
   end
 
@@ -32,7 +32,7 @@ describe "Usuário faz login como proprietário" do
   click_on 'Proprietário'
   fill_in "E-mail",	with: "adriano3@email.com"
   fill_in "Senha",	with: "password"
-  within ('form') do
+  within ('div.actions') do
     click_on 'Entrar'
   end
   click_on 'Sair'
