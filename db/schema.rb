@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_010312) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_15_174552) do
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -58,6 +58,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_010312) do
     t.index ["room_id"], name: "index_prices_on_room_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "guest_number"
+    t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.index ["room_id"], name: "index_reservations_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -80,5 +91,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_010312) do
 
   add_foreign_key "inns", "owners"
   add_foreign_key "prices", "rooms"
+  add_foreign_key "reservations", "rooms"
   add_foreign_key "rooms", "inns"
 end

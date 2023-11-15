@@ -28,7 +28,7 @@
   <h3>Quartos</h3>
   <%@rooms.each do |room|%>
       <dl>
-        <dt><%=room.name%></dt>
+        <dt><%=link_to room.name, new_room_reservation_path(room.id)%></dt>
         <dt>Descrição:</dt>
         <dd><%=room.description%> </dd>
         <dt>Tamanho:</dt>

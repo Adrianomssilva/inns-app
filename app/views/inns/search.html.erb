@@ -1,20 +1,39 @@
-<%="Resultado da busca por: #{@query}"%>
+<% if @query_city.present? %>
+  <%="Resultado da busca por: #{@query_city}"%>
 
-
-
-<div class="pousadas">
-  <h3>Pousadas</h3>
-  <% if @inns.present? %>
-    <h2>Resultado: <%=@inns.count%> <%=Inn.model_name.human(count: @inns.count)%> </h2>
-    <%@inns.each do |inn|%>
-      <div class="pousada">
-        <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
-        <dl>
-          <dt>Cidade: </dt>
-          <dd><%=inn.city %></dd>
-        </dl>
+  <div class="pousadas">
+    <h3>Pousadas</h3>
+    <% if @inns.present? %>
+      <h2>Resultado: <%=@inns.count%> <%=Inn.model_name.human(count: @inns.count)%> </h2>
+      <%@inns.each do |inn|%>
+        <div class="pousada">
+          <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
+          <dl>
+            <dt>Cidade: </dt>
+            <dd><%=inn.city %></dd>
+          </dl>
+      <% end %>
+      <% else %>
+      <p>Nenhuma pousada encontrada!</p>
     <% end %>
-    <% else %>
-    <p>Nenhuma pousada encontrada!</p>
-  <% end %>
-    </div>
+      </div>
+<% else %>
+  <%="Resultado da busca por: #{@query}"%>
+
+  <div class="pousadas">
+    <h3>Pousadas</h3>
+    <% if @inns.present? %>
+      <h2>Resultado: <%=@inns.count%> <%=Inn.model_name.human(count: @inns.count)%> </h2>
+      <%@inns.each do |inn|%>
+        <div class="pousada">
+          <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
+          <dl>
+            <dt>Cidade: </dt>
+            <dd><%=inn.city %></dd>
+          </dl>
+      <% end %>
+      <% else %>
+      <p>Nenhuma pousada encontrada!</p>
+    <% end %>
+      </div>
+<% end %>

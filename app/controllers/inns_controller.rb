@@ -40,8 +40,13 @@ class InnsController < ApplicationController
   end
 
   def search
+    @query_city = params["query_city"]
     @query = params["query"]
-    @inns = Inn.published.where("city = ? OR brand_name LIKE ? OR neighborhood LIKE ? ", "#{@query}", "%#{@query}%", "%#{@query}%").order(:brand_name)
+    if @query_city.present?
+    @inns = Inn.published.where("city = ?", "#{@query_city}").order(:brand_name)
+    else
+    @inns = Inn.published.where("city LIKE ? OR brand_name LIKE ? OR neighborhood LIKE ? ", "%#{@query}%", "%#{@query}%", "%#{@query}%").order(:brand_name)
+    end
   end
 
   def my_inn

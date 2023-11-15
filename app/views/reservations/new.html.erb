@@ -1,0 +1,47 @@
+<h2><%= @room.name %></h2>
+<div class = "details_room">
+  <dl>
+    <dt>Descrição:</dt>
+    <dd><%=@room.description%> </dd>
+    <dt>Tamanho:</dt>
+    <dd><%=@room.dimension%> m²</dd>
+    <dt>Capacidade:</dt>
+    <dd><%=@room.capacity%></dd>
+    <dt>Preço padrão:</dt>
+    <dd><%=@room.default_price%></dd>
+    <dt>Banheiro:</dt>
+    <dd><%=@room.bathroom%></dd>
+    <dt>Varanda:</dt>
+    <dd><%=@room.balcony%></dd>
+    <dt>Ar-condicionado:</dt>
+    <dd><%=@room.air_conditioning%></dd>
+    <dt>Tv:</dt>
+    <dd><%=@room.tv%></dd>
+    <dt>Guarda roupa:</dt>
+    <dd><%=@room.wardrobe%></dd>
+    <dt>Cofre:</dt>
+    <dd><%=@room.safe%></dd>
+    <dt>Acesso a PCD:</dt>
+    <dd><%=@room.pcd%></dd>
+  </dl>
+</div>
+<div class="form_reservation">
+  <% if @reservation.errors.any? %>
+  <p>Verifique os erros abaixo</p>
+  <ul>
+    <%@reservation.errors.full_messages.each do |msg|%>
+      <li><%=msg%></li>
+      <% end %>
+  </ul>
+<% end %>
+
+  <%= form_with(model: [@room, @reservation]) do |f| %>
+  <%= f.label :start_date%>
+  <%= f.date_field :start_date %>
+  <%= f.label :end_date%>
+  <%= f.date_field :end_date %>
+  <%= f.label :guest_number%>
+  <%= f.number_field :guest_number%>
+  <%= f.submit 'Verificar Reserva' %>
+      <% end %>
+</div>

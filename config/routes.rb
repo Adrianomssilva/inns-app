@@ -8,10 +8,12 @@ Rails.application.routes.draw do
     patch 'publish', on: :member
     patch 'hidden', on: :member
   end
-  resources :rooms, only: [:new, :create, :edit, :update] do
+  resources :rooms, only: [:new, :create, :edit, :update, :show] do
+
     patch 'unavailable', on: :member
     patch 'available', on: :member
     resources :prices, only: [:new, :create]
+    resources :reservations, only: [:new, :create]
   end
   get 'meus-quartos', to: 'rooms#my_rooms', as: 'my_rooms'
 end
