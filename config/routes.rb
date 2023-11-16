@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     patch 'unavailable', on: :member
     patch 'available', on: :member
     resources :prices, only: [:new, :create]
-    resources :reservations, only: [:new, :create]
+    resources :reservations, only: [:new, :create] do
+      get 'confirmation', on: :new
+    end
   end
   get 'meus-quartos', to: 'rooms#my_rooms', as: 'my_rooms'
 end

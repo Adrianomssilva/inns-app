@@ -6,14 +6,20 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @room = Room.find(params[:room_id])
-    @reservation = @room.reservations.build(reservation_params)
-    if @reservation.save
-      redirect_to Something_path
+    room = Room.find(params[:room_id])
+    reservation = room.reservations.build(reservation_params)
+    if reservation.valid?
+    session[:temp_reserve] = reservation_params
+    redirect_to confirmation_new_room_reservation_path
     else
-      flash.now[:notice] = 'Ocorreu um erro...'
-      render 'new'
+      flash.now[:notice] = 'Verifique os erros.'
+    render 'new'
     end
+  end
+
+  def confirmation
+    @room = Room.find(params[:room_id])
+    @temp_reserve = session[:temp_reserve]
   end
 
   private

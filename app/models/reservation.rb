@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :room
   validates :start_date, :end_date, :guest_number, presence: true
   enum status: {pending: 0, confirmed: 1, canceled: 2}
-  validate  :guests_validation, :start_future, :end_future, :room_occuped_validate
+  validate  :guests_validation, :start_future, :end_future
   validate  :room_occuped_validate, on: :create
 
 private
