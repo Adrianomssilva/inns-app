@@ -58,7 +58,7 @@ describe "Usúario sem login reserva um quarto" do
       expect(page).to have_content  "Data de entrada: 10/11/2025"
       expect(page).to have_content  "Data de saída: 17/11/2025"
       expect(page).to have_content  "quarto do beco"
-      expect(page).to have_content  "Total:"
+      expect(page).to have_content  "Total: 1050"
 
   end
 

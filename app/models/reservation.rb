@@ -1,5 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :room
+  after_validation :generate_total, on: :create
   validates :start_date, :end_date, :guest_number, presence: true
   enum status: {pending: 0, confirmed: 1, canceled: 2}
   validate  :guests_validation, :start_future, :end_future
@@ -32,7 +33,17 @@ private
         self.errors.add(:base, 'Estas datas não estão disponíveis')
       end
     end
+  end
 
+  def generate_total
+    if room.present?
+      range = Range.new(self.start_date, self.end_date)
+      room = self.room
+      if self.room.prices.empty?
+        days = range.count - 1
+        self.total_value = days*room.default_price
+      end
+    end
   end
 
 end

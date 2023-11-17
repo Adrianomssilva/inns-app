@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
     room = Room.find(params[:room_id])
     reservation = room.reservations.build(reservation_params)
     if reservation.valid?
-    session[:temp_reserve] = reservation_params
+    session[:temp_reserve] = reservation_params.merge("total_value" => reservation.total_value)
     redirect_to confirmation_new_room_reservation_path
     else
       flash.now[:notice] = 'Verifique os erros.'
@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :room_id, :guest_number, :status)
+    params.require(:reservation).permit(:start_date, :end_date, :room_id, :guest_number, :status, :total_value)
 
   end
 
