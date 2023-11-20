@@ -14,7 +14,7 @@ describe "O proprietário edita quartos" do
                         capacity: 2, default_price: '150', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim', pcd: 'não', inn: inn )
     # Act
-    login_as (owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Quartos'
@@ -53,7 +53,7 @@ describe "O proprietário edita quartos" do
                         capacity: 10, default_price: '600', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim', pcd: 'Sim', inn: inn )
     # Act
-    login_as (owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Quartos'
@@ -93,7 +93,7 @@ describe "O proprietário edita quartos" do
                         capacity: 10, default_price: '600', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim', pcd: 'Sim', inn: inn )
     # Act
-    login_as(owner2)
+    login_as owner2, scope: :owner
     visit edit_room_path(room.id)
 
     # Assert

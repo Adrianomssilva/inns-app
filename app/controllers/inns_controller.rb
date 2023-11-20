@@ -11,6 +11,7 @@ class InnsController < ApplicationController
       redirect_to my_inn_path, notice: 'Pousada cadastrada com sucesso!'
     else
       flash.now[:notice] = 'Não foi possível cadastrar a pousada'
+      render 'new'
     end
   end
 

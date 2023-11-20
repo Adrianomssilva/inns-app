@@ -36,29 +36,23 @@ private
   end
 
   def generate_total
-    if room.present?
-      range = Range.new(self.start_date, self.end_date-1.day)
+    if room.present? && self.start_date.present? && self.end_date.present?
+      range = (self.start_date...self.end_date).to_a
       room = self.room
       prices_ar = []
-      if room.prices.empty?
-        days = range.count
-        self.total_value = days*room.default_price
-      else
-        range.each do |date|
-          presence = false
-          room.prices.each do |price|
-            if date.between?(price.date_start, price.date_end)
-              presence = true
-              prices_ar << price.value.to_i
-              break
-            end
+      range.each do |date|
+        presence = false
+        room.prices.each do |price|
+          if date.between?(price.date_start, price.date_end)
+            presence = true
+            prices_ar << price.value.to_i
+            break
           end
-          if presence != true
+          end
+        if presence != true
             prices_ar << room.default_price.to_i
-
-          end
-          self.total_value = prices_ar.sum
         end
+          self.total_value = prices_ar.sum
       end
     end
   end

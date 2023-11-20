@@ -12,7 +12,7 @@ describe "Proprietário deixa a pousada" do
                       policies: 'Proibido correr na pousada', check_in: '13:00', check_out: '12:00', owner: owner,
                       status: 0 )
     # Arrange
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on "Minha pousada"
     click_on 'Publicar'
@@ -31,7 +31,7 @@ describe "Proprietário deixa a pousada" do
                       policies: 'Proibido correr na pousada', check_in: '13:00', check_out: '12:00', owner: owner,
                       status: 2 )
     # Arrange
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on "Minha pousada"
     click_on 'Esconder'

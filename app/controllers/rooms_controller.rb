@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to my_inn_path, notice: 'Quarto criado com sucesso'
     else
-      falsh:now[:notice] = 'Não foi possível criar o quarto'
+      flash.now[:notice] = 'Não foi possível criar o quarto'
       render 'new'
     end
   end

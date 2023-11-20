@@ -38,7 +38,7 @@ it "com sucesso" do
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim',
                         pcd: 'não', inn: inn,status:2 )
   # Act
-  login_as(owner)
+  login_as owner, scope: :owner
   visit root_path
   click_on 'Minha pousada'
   click_on 'Quartos'

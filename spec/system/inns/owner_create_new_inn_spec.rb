@@ -7,7 +7,7 @@ describe "Proprietário cria sua pousada" do
     owner = Owner.create!(name: 'Bianca', email:'bianca@email.com', password: 'password')
 
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Criar pousada'
@@ -38,7 +38,7 @@ describe "Proprietário cria sua pousada" do
     owner2 = Owner.create!(name: 'Bia', email:'bia@email.com', password: 'password')
 
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Criar pousada'

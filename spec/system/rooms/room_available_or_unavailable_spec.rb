@@ -15,7 +15,7 @@ describe "status do quarto muda" do
                         capacity: 2, default_price: '150', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim', pcd: 'não', inn: inn, status: 0)
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Quartos'
@@ -37,7 +37,7 @@ describe "status do quarto muda" do
                         capacity: 2, default_price: '150', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim', pcd: 'não', inn: inn, status: 2)
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Quartos'

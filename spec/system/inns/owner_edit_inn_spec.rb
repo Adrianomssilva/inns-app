@@ -12,7 +12,7 @@ describe "Prorpietário edita sua pousada" do
                       policies: 'Proibido correr na pousada', check_in: '13:00', check_out: '12:00', owner: owner,
                       status: 0 )
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Editar'
@@ -39,7 +39,7 @@ describe "Prorpietário edita sua pousada" do
                       policies: 'Proibido correr na pousada', check_in: '13:00', check_out: '12:00', owner: owner,
                       status: 0 )
     # Act
-    login_as(owner)
+    login_as owner, scope: :owner
     visit root_path
     click_on 'Minha pousada'
     click_on 'Editar'
@@ -69,7 +69,7 @@ describe "Prorpietário edita sua pousada" do
                       policies: 'Proibido correr na pousada', check_in: '13:00', check_out: '12:00', owner: owner2,
                       status: 0 )
     # Act
-    login_as(owner2)
+    login_as owner2, scope: :owner
     visit edit_inn_path(inn.id)
 
     # Assert
