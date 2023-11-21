@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:confirmation]
+
   def new
     @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build

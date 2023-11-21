@@ -5,4 +5,9 @@
     <p>Data de entrada: <%=@reservation.start_date %> </p>
     <p>Data de saída: <%=@reservation.end_date %> </p>
     <p>Total: <%=@reservation.total_value%> </p>
+    <p><strong>Dados da pousada:</strong> <br>
+        Check-in: <%= @room.inn.check_in %> <br>
+        Check-out: <%= @room.inn.check_out %> <br>
+        Formas de pagamento: <%= @room.inn.payment_options %>
+    </p>
     
