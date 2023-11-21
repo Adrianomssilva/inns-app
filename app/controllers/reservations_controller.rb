@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:confirmation, :create]
+  before_action :authenticate_user!, only: [:confirmation]
 
   def new
     @room = Room.find(params[:room_id])
@@ -31,6 +31,7 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     if @reservation.save
       redirect_to my_reservations_path, notice: 'Sua reserva foi confirmada'
+      session.delete(:temp_reserve)
     else
       flash.now[:notice] = 'Verifique os erros'
       render 'new'

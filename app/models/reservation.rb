@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :room
-  belongs_to :user
+  belongs_to :user, optional: true
   after_validation :generate_total, on: :create
   validates :start_date, :end_date, :guest_number, presence: true
   enum status: {pending: 0, confirmed: 1, canceled: 2}
