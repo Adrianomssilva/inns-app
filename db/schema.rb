@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_125624) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_144125) do
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_125624) do
     t.integer "status", default: 0
     t.integer "total_value"
     t.integer "user_id", null: false
+    t.string "code"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

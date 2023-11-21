@@ -6,9 +6,13 @@ class Reservation < ApplicationRecord
   enum status: {pending: 0, confirmed: 1, canceled: 2}
   validate  :guests_validation, :start_future, :end_future
   validate  :room_occuped_validate, on: [:create, :reservation_create]
-
+  before_create :generate_code
 
 private
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(8).upcase
+  end
 
   def guests_validation
     if room.present? && self.guest_number.present? && self.guest_number > self.room.capacity

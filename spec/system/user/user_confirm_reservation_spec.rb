@@ -15,6 +15,7 @@ describe "Um usuário cria sua reserva" do
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim',
                         pcd: 'não', inn: inn,status:0 )
     user = User.create!(name: 'Adriano', cpf: '00000000000', email: 'adriano@email.com', password: 'password')
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
     #Act
     login_as user, scope: :user
     visit new_room_reservation_path(room.id)
@@ -26,6 +27,7 @@ describe "Um usuário cria sua reserva" do
 
     #Assert
     expect(page).to have_content 'Sua reserva foi confirmada'
+    expect(page).to have_content 'Reserva: ABC12345'
     expect(page).to have_content 'Data de entrada: 2025-11-10'
 
   end
