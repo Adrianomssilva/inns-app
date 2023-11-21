@@ -21,6 +21,10 @@
             <%= f.text_field :query%>
             <%= f.submit 'Buscar'%>
           <% end %>
+          <% if user_signed_in? %>
+              Usuário: <%=current_user.email%>
+              <%=button_to  "Sair", destroy_user_session_path, method: :delete%>
+          <% end %>
           <% if owner_signed_in? %>
               <%=current_owner.email%>
               <%= link_to  "Minha pousada", my_inn_path %>

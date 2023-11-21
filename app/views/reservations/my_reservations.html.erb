@@ -1,0 +1,12 @@
+
+<h2>Aqui estão suas rervas</h2>
+
+<%if current_user.reservations.empty? %>
+  <p>Você não possui reservas</p>
+  <% else %>
+  <% @reservation.each do |reserva| %>
+    <%= reserva.room.name %>
+    Data de entrada: <%= reserva.start_date %>
+  <% end %>
+
+<% end %>

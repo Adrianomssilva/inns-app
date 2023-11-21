@@ -10,4 +10,6 @@
         Check-out: <%= @room.inn.check_out %> <br>
         Formas de pagamento: <%= @room.inn.payment_options %>
     </p>
+
+    <%= button_to "Confirmar Reserva", room_reservation_create_path%>
     

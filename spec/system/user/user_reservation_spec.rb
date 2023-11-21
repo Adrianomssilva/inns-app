@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Usúario sem login reserva um quarto" do
+describe "Usúario reserva um quarto" do
 
   it "escolhe o quarto e chega na página com detalhes e um formulário" do
     #Arrange
@@ -72,8 +72,9 @@ describe "Usúario sem login reserva um quarto" do
                         capacity: 2, default_price: '500', bathroom: 'Sim', balcony: 'Sim',
                         air_conditioning: 'Sim', tv: 'Sim', wardrobe: 'Sim', safe: 'Sim',
                         pcd: 'não', inn: inn,status:0 )
-
+    user = User.create!(name: 'Adriano', cpf: '00000000000', email: 'adriano@email.com', password: 'password')
     # Act
+    login_as user, scope: :user
     visit new_room_reservation_path(room.id)
     fill_in "Data de entrada",	with: ''
     fill_in "Data de saída",	with: ''
@@ -101,16 +102,12 @@ describe "Usúario sem login reserva um quarto" do
     user = User.create!(name: 'Adriano', cpf: '00000000000', email: 'adriano@email.com', password: 'password')
 
     # Act
+    login_as user, scope: :user
     visit new_room_reservation_path(room.id)
     fill_in "Data de entrada",	with: '10/11/2025'
     fill_in "Data de saída",	with: '17/11/2025'
     fill_in "Hóspedes",	with: 2
     click_on 'Verificar Reserva'
-    fill_in "Email",	with: "adriano@email.com"
-    fill_in "Password", with: "password"
-    within("div.actions") do
-    click_on 'Entrar'
-    end
 
     # Assert
       expect(page).to have_content 'Resumo da reserva'
