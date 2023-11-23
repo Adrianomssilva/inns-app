@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
     post 'reservation_create', to: 'reservations#reservation_create'
   end
+  resources :reservations, only: :index do
+    patch 'cancel', on: :member
+  end
+
   get 'meus-quartos', to: 'rooms#my_rooms', as: 'my_rooms'
   get 'minhas-reservas', to: 'reservations#my_reservations', as: 'my_reservations'
 end

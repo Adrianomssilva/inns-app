@@ -6,8 +6,8 @@
     <p>Data de saída: <%=@reservation.end_date %> </p>
     <p>Total: <%=@reservation.total_value%> </p>
     <p><strong>Dados da pousada:</strong> <br>
-        Check-in: <%= @room.inn.check_in %> <br>
-        Check-out: <%= @room.inn.check_out %> <br>
+        Check-in: <%= @room.inn.check_in.strftime("%H:%M") %> <br>
+        Check-out: <%= @room.inn.check_out.strftime("%H:%M") %> <br>
         Formas de pagamento: <%= @room.inn.payment_options %>
     </p>
 

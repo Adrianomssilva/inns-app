@@ -7,3 +7,7 @@ pt-BR:
         start_date: 'Data de entrada'
         end_date: 'Data de saída'
         guest_number: 'Hóspedes'
+        # status:
+        #   active: 'Ativa'
+        #   pending: 'Pendente'
+        #   canceled: 'Cancelada'

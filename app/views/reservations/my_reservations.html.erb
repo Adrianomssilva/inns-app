@@ -5,9 +5,12 @@
   <p>Você não possui reservas</p>
   <% else %>
   <% @reservation.each do |reserva| %>
-    Reserva: <%= reserva.code %>
-    <%= reserva.room.name %>
+  <div class = 'reserva'>
+    Reserva: <%= reserva.code %> <br>
+    <%= reserva.room.name %> <br>
     Data de entrada: <%= reserva.start_date %>
+    Status: <%=reserva.status  %>
+    <%= button_to "Cancelar reserva", cancel_reservation_path(reserva.id), {method: 'patch'}  %>
   <% end %>
-
+  </div>
 <% end %>

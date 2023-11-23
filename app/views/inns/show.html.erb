@@ -15,8 +15,8 @@
       <dt>Aceita Animais:</dt>
       <dd><%=@inn.pets%></dd>
       <dt>Horarios:</dt>
-      <dd>Chekc-in: <%=@inn.check_in%></dd>
-      <dd>Chekc-out: <%=@inn.check_out%></dd>
+      <dd>Chekc-in: <%=@inn.check_in.strftime("%H:%M")%></dd>
+      <dd>Chekc-out: <%=@inn.check_out.strftime("%H:%M")%></dd>
       <dt>Politicas:</dt>
       <dd><%=@inn.policies%></dd>
       <dt>Descrição:</dt>

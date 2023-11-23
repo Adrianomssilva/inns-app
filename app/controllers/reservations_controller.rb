@@ -43,6 +43,18 @@ class ReservationsController < ApplicationController
 
   end
 
+  def cancel
+    @reservation = Reservation.find(params[:id])
+
+    if Time.now <= @reservation.start_date - 7.days
+      @reservation.canceled!
+      redirect_to my_reservations_path, notice: 'Sua reserva foi cancelada'
+    else
+      redirect_to my_reservations_path, notice: 'Você não pode mais cancelar a reserva, entre em contato
+                                                  com a pousada.'
+    end
+  end
+
   private
 
   def reservation_params

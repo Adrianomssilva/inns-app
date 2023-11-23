@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_144125) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_140819) do
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -29,8 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_144125) do
     t.text "policies"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "check_in"
-    t.string "check_out"
+    t.time "check_in"
+    t.time "check_out"
     t.integer "status", default: 0
     t.index ["owner_id"], name: "index_inns_on_owner_id"
   end
