@@ -10,6 +10,7 @@
         Data de saída: <%= reserva.end_date %>
         Número de hóspedes: <%= reserva.guest_number %>
         Status: <%= reserva.status %>
+      <%= link_to 'Check-out',  new_reservation_check_out_path(reserva.id) %>
       <% end %>
     <% end %>
   <% end %>

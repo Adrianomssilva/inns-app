@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     patch 'cancel', on: :member
     patch 'owner_cancel', on: :member
     resources :check_ins, only: [:create]
+    resources :check_outs, only: [:new, :create]
   end
   resources :check_ins, only: :index
 
