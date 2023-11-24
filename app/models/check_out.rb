@@ -10,21 +10,11 @@ class CheckOut < ApplicationRecord
     check_out = exit.hour*60 + exit.min
     entry = reservation.check_in.entry.to_date
     exit_true = exit.to_date
-    exit_true2 = exit.to_date + 1.day
-
-    binding.break
-
+    range1 = (entry...exit_true).to_a
+    range2 = (entry..exit_true).to_a
+    prices_ar = []
     if inn_check_out < check_out
-    calculate( entry, exit_true2)
-    # else
-    # calculate(room, entry, exit_true2)
-    end
-  end
-
-  def calculate(room, entry, exit)
-    range = (entry...exit).to_a
-      prices_ar = []
-      range.each do |date|
+      range1.each do |date|
         presence = false
         room.prices.each do |price|
           if date.between?(price.date_start, price.date_end)
@@ -36,9 +26,26 @@ class CheckOut < ApplicationRecord
         if presence != true
             prices_ar << room.default_price.to_i
         end
-          return prices_ar.sum
       end
+    elsif inn_check_out >= check_out
+      range2.each do |date|
+        presence = false
+        room.prices.each do |price|
+          if date.between?(price.date_start, price.date_end)
+            presence = true
+            prices_ar << price.value.to_i
+            break
+          end
+        end
+        if presence != true
+            prices_ar << room.default_price.to_i
+        end
+      end
+    end
+    prices_ar.sum
   end
+
+
 
 
   private

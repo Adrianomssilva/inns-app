@@ -3,18 +3,20 @@
 <div class = "card_reservas">
   Quarto: <%= @reserva.room.name %>
   Data de entrada: <%= @reserva.check_in.entry %>
-  Data de saída: <%= @check_out.exit %>
+  Data de saída: <%= @saida %>
   Número de hóspedes: <%= @reserva.guest_number %>
   Status: <%= @reserva.status %>
   Formas de pagamento: <%=@reserva.room.inn.payment_options %>
   Total: <%= @total %>
 </div>
 
-<%= form_with  do |f| %>
-  <%= f.label :payment_methods%>
+<%= form_with(model: [@reserva, @check_out] )  do |f| %>
+  <%= f.label :payment_methods, 'Forma de pagamento'%>
   <%= f.text_field :payment_methods%>
-  <%= f.label :exit%>
-  <%= f.time_field :exit, value: @check_out.exit, readonly: true%>
-  <%= f.submit 'Continuar com Check-out' %>
+  <%= f.label :total, 'Total'%>
+  <%= f.number_field :total, value: @total, readonly: true%>
+  <%= f.label :exit, 'Saída'%>
+  <%= f.time_field :exit, value: @saida, readonly: true%>
+  <%= f.submit 'Confirmar Check-out' %>
       <% end %>
 </div> 
