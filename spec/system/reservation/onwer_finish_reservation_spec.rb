@@ -31,12 +31,14 @@ describe 'Owner faz o checkout de uma reserva em andamento' do
         click_on 'Estadias Ativas'
     end
     travel_to(13.days.from_now) do
-      click_on 'Encerrar'
+
+      click_on 'Check-out'
+      tempo = Time.now
     # Assert
     expect(page).to have_content "Check-Out da reserva #{reserva.code}"
     expect(page).to have_content "Quarto: quarto do beco"
     expect(page).to have_content "Data de entrada: #{reserva.check_in.entry}"
-    expect(page).to have_content "Data de saída: #{Time.now}"
+    expect(page).to have_content "Data de saída: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     expect(page).to have_content "Número de hóspedes: 2"
     expect(page).to have_content "Total: 450"
     expect(page).to have_button 'Confirmar Check-out'

@@ -4,14 +4,25 @@ class CheckOut < ApplicationRecord
 
 
 
+  def self.total_calculate(reservation, exit)
+    room = reservation.room
+    inn_check_out = room.inn.check_out.hour*60 + room.inn.check_out.min
+    check_out = exit.hour*60 + exit.min
+    entry = reservation.check_in.entry.to_date
+    exit_true = exit.to_date
+    exit_true2 = exit.to_date + 1.day
 
-  def generate_total
-      reservation = self.reservation if reservation.present?
-      tempo_checkout_inn = reservation.room.inn.check_out.hour*60 + reservation.room.inn.check_out.min
-      tempo_checkout = Time.now.hour*60 + Time.now.min
+    binding.break
 
-      range = (self.start_date...self.end_date).to_a
-      room = self.room
+    if inn_check_out < check_out
+    calculate( entry, exit_true2)
+    # else
+    # calculate(room, entry, exit_true2)
+    end
+  end
+
+  def calculate(room, entry, exit)
+    range = (entry...exit).to_a
       prices_ar = []
       range.each do |date|
         presence = false
@@ -21,11 +32,14 @@ class CheckOut < ApplicationRecord
             prices_ar << price.value.to_i
             break
           end
-          end
+        end
         if presence != true
             prices_ar << room.default_price.to_i
         end
-          self.total_value = prices_ar.sum
-    end
+          return prices_ar.sum
+      end
   end
+
+
+  private
 end
