@@ -1,6 +1,12 @@
 class ReservationsController < ApplicationController
 
   before_action :authenticate_user!, only: [:confirmation]
+  before_action :authenticate_owner!, only: [:index, :owner_cancel]
+
+  def index
+    @rooms = current_owner.inn.rooms
+
+  end
 
   def new
     @room = Room.find(params[:room_id])
@@ -52,6 +58,17 @@ class ReservationsController < ApplicationController
     else
       redirect_to my_reservations_path, notice: 'Você não pode mais cancelar a reserva, entre em contato
                                                   com a pousada.'
+    end
+  end
+
+  def owner_cancel
+    @reservation = Reservation.find(params[:id])
+
+    if Time.now >= @reservation.start_date + 3.days
+      @reservation.canceled!
+      redirect_to reservations_path, notice: 'A reserva foi cancelada'
+    else
+      redirect_to reservations_path, notice: 'Você ainda não pode cancelar essa reserva'
     end
   end
 

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_140819) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_24_025731) do
+  create_table "check_ins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "reservation_id", null: false
+    t.datetime "entry"
+    t.index ["reservation_id"], name: "index_check_ins_on_reservation_id"
+  end
+
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -107,6 +115,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_140819) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "check_ins", "reservations"
   add_foreign_key "inns", "owners"
   add_foreign_key "prices", "rooms"
   add_foreign_key "reservations", "rooms"

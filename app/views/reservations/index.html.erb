@@ -1,0 +1,34 @@
+<h2>Reservas da <%= current_owner.inn.brand_name %></h2>
+
+<h3>Reservas confirmadas</h3>
+<div class = "card_reservas">
+  <%@rooms.each do |room| %>
+    <% if room.reservations.any?%>
+      <% room.reservations.pending.each do |reserva|%>
+        <%= room.name %>
+        Cod: <%=reserva.code%>
+        Data de entrada: <%= reserva.start_date %>
+        Data de saída: <%= reserva.end_date %>
+        Número de hóspedes: <%= reserva.guest_number %>
+        <%= button_to "Check-in", reservation_check_ins_path(reserva.id)%>
+        <%= button_to "Cancelar reserva", owner_cancel_reservation_path(reserva.id), {method: 'patch'}  %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<h3>Reservas canceladas</h3>
+<div class = "card_reservas">
+  <%@rooms.each do |room| %>
+    <% if room.reservations.any?%>
+      <% room.reservations.canceled.each do |reserva|%>
+        <%= room.name %>
+        Cod: <%=reserva.code%>
+        Data de entrada: <%= reserva.start_date %>
+        Data de saída: <%= reserva.end_date %>
+        Número de hóspedes: <%= reserva.guest_number %>
+        Status: <%= reserva.status %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   end
   resources :reservations, only: :index do
     patch 'cancel', on: :member
+    patch 'owner_cancel', on: :member
+    resources :check_ins, only: [:create]
   end
+  resources :check_ins, only: :index
 
   get 'meus-quartos', to: 'rooms#my_rooms', as: 'my_rooms'
   get 'minhas-reservas', to: 'reservations#my_reservations', as: 'my_reservations'
