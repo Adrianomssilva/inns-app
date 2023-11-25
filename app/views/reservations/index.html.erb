@@ -32,3 +32,19 @@
     <% end %>
   <% end %>
 </div>
+
+<h3>Reservas Concluidas</h3>
+<div class = "card_reservas">
+  <%@rooms.each do |room| %>
+    <% if room.reservations.any?%>
+      <% room.reservations.finish.each do |reserva|%>
+        Cod: <%=reserva.code%>
+        Quarto: <%= room.name %>
+        Check-in: <%= reserva.check_in.entry %>
+        Check-out: <%= reserva.check_out.exit %>
+        Valor Total: <%= reserva.check_out.total %>
+        Status: <%= reserva.status %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

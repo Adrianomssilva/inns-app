@@ -1,5 +1,5 @@
 class CheckOut < ApplicationRecord
-  belongs_to :reservation, optional: true
+  belongs_to :reservation
 
 
 

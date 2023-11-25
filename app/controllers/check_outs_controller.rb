@@ -7,6 +7,19 @@ class CheckOutsController < ApplicationController
     @total = CheckOut.total_calculate(@reserva, @saida)
   end
 
+  def create
+    @reservation = Reservation.find(params[:reservation_id])
+    @check_out = CheckOut.new(check_out_params)
+    @check_out.reservation = @reservation
+    if @check_out.save
+      @reservation.finish!
+      redirect_to reservations_path, notice: "Reserva encerrada com sucesso!"
+    else
+      flash.now[:notice] = 'Não foi possível encerra a reserva'
+      render 'new'
+    end
+  end
+
 
   private
 

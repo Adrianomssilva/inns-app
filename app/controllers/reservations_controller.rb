@@ -5,7 +5,6 @@ class ReservationsController < ApplicationController
 
   def index
     @rooms = current_owner.inn.rooms
-
   end
 
   def new
