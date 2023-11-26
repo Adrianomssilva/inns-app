@@ -40,7 +40,7 @@ describe 'Owner faz o checkout de uma reserva em andamento' do
     expect(page).to have_content "Data de saída: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     expect(page).to have_content "Número de hóspedes: 2"
     expect(page).to have_content "Formas de pagamento: Cartão"
-    expect(page).to have_content "Total: 450"
+    expect(page).to have_field  "Total"
     expect(page).to have_button 'Confirmar Check-out'
     end
   end

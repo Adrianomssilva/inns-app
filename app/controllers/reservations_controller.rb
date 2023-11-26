@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
   end
 
   def my_reservations
-    @reservation = current_user.reservations
+    @reservations = current_user.reservations
 
   end
 

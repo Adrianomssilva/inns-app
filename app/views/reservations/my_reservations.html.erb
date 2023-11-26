@@ -4,7 +4,7 @@
 <%if current_user.reservations.empty? %>
   <p>Você não possui reservas</p>
   <% else %>
-  <% @reservation.each do |reserva| %>
+  <% @reservations.each do |reserva| %>
   <div class = 'reserva'>
     Reserva: <%= reserva.code %> <br>
     <%= reserva.room.name %> <br>
