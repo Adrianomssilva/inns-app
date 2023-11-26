@@ -12,6 +12,10 @@ class ReservationsController < ApplicationController
     @reservation = @room.reservations.build
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+  end
+
   def create
     @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build(reservation_params)

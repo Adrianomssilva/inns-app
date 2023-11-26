@@ -1,0 +1,17 @@
+
+<% if @reservation.finish? %>
+<h2>Reserva Cod: <%= @reservation.code %></h2>
+<div>
+  Quarto: <%= @reservation.room.name %>
+  Check-in: <%= @reservation.check_in.entry %>
+  Check-out: <%= @reservation.check_out.exit %>
+  Valor Total: <%= @reservation.check_out.total %>
+  <%= link_to  "Fazer uma avaliação", new_reservation_assessment_path(@reserva.id) %>
+</div>
+
+<% else %>
+<h3>Essa reserva ainda não foi finalizada.</h3>
+<%= link_to  "Voltar", my_reservations_path %>
+<% end %>
+
+

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     patch 'hidden', on: :member
   end
   resources :rooms, only: [:new, :create, :edit, :update, :show] do
-
     patch 'unavailable', on: :member
     patch 'available', on: :member
     resources :prices, only: [:new, :create]
@@ -19,11 +18,12 @@ Rails.application.routes.draw do
     end
     post 'reservation_create', to: 'reservations#reservation_create'
   end
-  resources :reservations, only: :index do
+  resources :reservations, only: [:index, :show]  do
     patch 'cancel', on: :member
     patch 'owner_cancel', on: :member
     resources :check_ins, only: [:create]
     resources :check_outs, only: [:new, :create]
+    resources :assessments, only: [:new, :create]
   end
   resources :check_ins, only: :index
 
