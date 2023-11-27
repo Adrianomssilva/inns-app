@@ -6,7 +6,7 @@
   Check-in: <%= @reservation.check_in.entry %>
   Check-out: <%= @reservation.check_out.exit %>
   Valor Total: <%= @reservation.check_out.total %>
-  <%= link_to  "Fazer uma avaliação", new_reservation_assessment_path(@reserva.id) %>
+  <%= link_to  "Fazer uma avaliação", new_reservation_assessment_path(@reservation.id) %>
 </div>
 
 <% else %>

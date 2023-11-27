@@ -71,7 +71,8 @@ describe "Usuário vê seus reserva finalizadas" do
 
 
     # Assert
-      expect(page).to have_content "nada"
+      expect(page).to have_content "Essa reserva ainda não foi finalizada."
+      expect(page).to have_link "Voltar"
     end
 
 
