@@ -32,4 +32,13 @@ Rails.application.routes.draw do
   resources :check_ins, only: :index
   get 'meus-quartos', to: 'rooms#my_rooms', as: 'my_rooms'
   get 'minhas-reservas', to: 'reservations#my_reservations', as: 'my_reservations'
+
+
+  namespace :api do
+    namespace :v1 do
+      resources :inns, only: [:index] do
+        get 'search', on: :collection
+      end
+    end
+  end
 end
