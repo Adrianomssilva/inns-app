@@ -1,0 +1,13 @@
+<h2> Mande sua reposta</h2>
+
+<div>
+  <p>Avaliação do Cliente: </p> 
+    Nota: <%= @avaliation.rate %>
+  <%= @avaliation.text %>
+</div>
+
+<%= form_with(model: [@avaliation, @answer]) do |f| %>
+<%= f.label :text, "Resposta" %>
+<%= f.text_area :text %>
+<%= f.submit 'Enviar' %>
+<% end %>

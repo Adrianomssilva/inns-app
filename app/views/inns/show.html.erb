@@ -54,3 +54,11 @@
       </dl> 
   <% end %>
 </div>
+
+<div class="avaliacoes">
+  <% @avaliations.last(3).each do |avaliation| %>
+    Quarto: <%= avaliation.reservation.room.name %>
+    Nota: <%= avaliation.rate %>
+    <%= avaliation.text %>
+    <% end %>
+</div>

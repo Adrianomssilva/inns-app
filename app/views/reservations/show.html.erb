@@ -6,7 +6,16 @@
   Check-in: <%= @reservation.check_in.entry %>
   Check-out: <%= @reservation.check_out.exit %>
   Valor Total: <%= @reservation.check_out.total %>
-  <%= link_to  "Fazer uma avaliação", new_reservation_assessment_path(@reservation.id) %>
+  <% if @reservation.avaliation.nil?  %>
+  <%= link_to  "Fazer uma avaliação", new_reservation_avaliation_path(@reservation.id) %>
+  <% else %>
+  <p>Avaliação</p>
+  Nota: <%= @reservation.avaliation.rate%>
+  <%= @reservation.avaliation.text%>
+  <% if @reservation.avaliation.answer.present?%>
+    <%= @reservation.room.inn.brand_name %>:  <%= @reservation.avaliation.answer.text %>
+  <% end %>
+  <% end %>
 </div>
 
 <% else %>

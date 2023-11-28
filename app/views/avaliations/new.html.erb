@@ -1,0 +1,9 @@
+<h2>Faça sua avaliação</h2>
+
+<%= form_with(model: [@reserva, @avaliation]) do |f| %>
+  <%= f.label :rate, 'Nota'%>
+  <%= f.select :rate, [0, 1, 2, 3, 4, 5]%>
+  <%= f.label :text, "Avaliação"%>
+  <%= f.text_area :text%>
+  <%= f.submit 'Avaliar' %>
+<% end %>

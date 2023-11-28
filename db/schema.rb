@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_24_143959) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_001014) do
+  create_table "answers", force: :cascade do |t|
+    t.integer "avaliation_id", null: false
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["avaliation_id"], name: "index_answers_on_avaliation_id"
+  end
+
+  create_table "avaliations", force: :cascade do |t|
+    t.integer "rate"
+    t.integer "reservation_id", null: false
+    t.integer "inn_id", null: false
+    t.integer "user_id", null: false
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inn_id"], name: "index_avaliations_on_inn_id"
+    t.index ["reservation_id"], name: "index_avaliations_on_reservation_id"
+    t.index ["user_id"], name: "index_avaliations_on_user_id"
+  end
+
   create_table "check_ins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,6 +146,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_24_143959) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "avaliations"
+  add_foreign_key "avaliations", "inns"
+  add_foreign_key "avaliations", "reservations"
+  add_foreign_key "avaliations", "users"
   add_foreign_key "check_ins", "reservations"
   add_foreign_key "check_outs", "reservations"
   add_foreign_key "inns", "owners"

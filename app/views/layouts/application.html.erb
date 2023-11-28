@@ -28,6 +28,7 @@
               <%=current_owner.email%>
               <%= link_to  "Minha pousada", my_inn_path %>
               <%= link_to  "Reservas", reservations_path %>
+              <%= link_to  "Avaliações", avaliations_path %>
               <%= link_to  "Estadias Ativas", check_ins_path %>
               <%=button_to  "Sair", destroy_owner_session_path, method: :delete%>
             <% else %>

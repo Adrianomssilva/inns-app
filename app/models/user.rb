@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, :cpf, presence: true
   has_many :reservations
+  has_many :avaliations
 end

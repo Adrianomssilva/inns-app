@@ -18,6 +18,7 @@ class InnsController < ApplicationController
   def show
     @inn = Inn.find(params[:id])
     @rooms = @inn.rooms.available
+    @avaliations = @inn.avaliations
   end
 
   def edit

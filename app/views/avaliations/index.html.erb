@@ -1,0 +1,16 @@
+<h2>Avaliações da Pousada <%= current_owner.inn %></h2>
+
+<% if current_owner.inn.avaliations.any? %>
+  <% @avaliations.each do |avaliacao|%>
+    Quarto: <%=avaliacao.reservation.room.name%>
+    Nota: <%=avaliacao.rate%>
+    <%=avaliacao.text%>
+    <% if avaliacao.answer.nil?%>
+      <%= link_to 'Responder', new_avaliation_answer_path(avaliacao.id) %>
+    <% else %>
+      Resposta: <%= avaliacao.answer.text %>
+    <% end %>
+  <% end %>
+<% else %>
+<p>Não existem avaliaçoes para essa pousada</p>
+<% end %>

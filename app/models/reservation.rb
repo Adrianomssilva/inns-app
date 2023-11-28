@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :user, optional: true
   has_one :check_in
   has_one :check_out
+  has_one :avaliation
   after_validation :generate_total, on: :create
   validates :start_date, :end_date, :guest_number, presence: true
   enum status: {pending: 0, active: 1, canceled: 2, finish: 3}
