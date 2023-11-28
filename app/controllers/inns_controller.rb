@@ -19,6 +19,21 @@ class InnsController < ApplicationController
     @inn = Inn.find(params[:id])
     @rooms = @inn.rooms.available
     @avaliations = @inn.avaliations
+    if @avaliations.present?
+      @nota = Inn.rating(@inn)
+    else
+    @nota = '--'
+    end
+  end
+
+  def avaliations
+    @inn = Inn.find(params[:id])
+    @avaliations = @inn.avaliations
+    if @avaliations.present?
+      @nota = Inn.rating(@inn)
+    else
+    @nota = '--'
+    end
   end
 
   def edit

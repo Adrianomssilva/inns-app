@@ -12,4 +12,16 @@ class Inn < ApplicationRecord
   def full_address
     "#{address}, #{neighborhood}, #{city}, #{state}"
   end
+
+
+  def self.rating(inn)
+    avaliations = inn.avaliations
+    notas = []
+
+    avaliations.each do |avaliation|
+      notas << avaliation.rate.to_f
+    end
+    tamanho = notas.count
+    notas.sum./ tamanho
+  end
 end

@@ -1,4 +1,4 @@
-<h2><%=@inn.brand_name%></h2>
+<h2><%=@inn.brand_name%> Rating: <%=@nota%></h2>
 
 <div class="detalhado">
   <dl>
@@ -61,4 +61,5 @@
     Nota: <%= avaliation.rate %>
     <%= avaliation.text %>
     <% end %>
+    <%= link_to  "Ver mais", avaliations_inn_path(@inn) %>
 </div>

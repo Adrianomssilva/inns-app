@@ -1,0 +1,10 @@
+<h2><%=@inn.brand_name%> Rating: <%=@nota%></h2>
+
+<div class="avaliacoes">
+  <% @avaliations.each do |avaliation| %>
+    Quarto: <%= avaliation.reservation.room.name %>
+    Nota: <%= avaliation.rate %>
+    <%= avaliation.text %>
+    <% end %>
+    <%= link_to  "Ver mais", avaliations_inn_path(@inn) %>
+</div>

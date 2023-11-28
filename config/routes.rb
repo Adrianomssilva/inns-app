@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     patch 'publish', on: :member
     patch 'hidden', on: :member
+    get 'avaliations', on: :member
   end
   resources :rooms, only: [:new, :create, :edit, :update, :show] do
     patch 'unavailable', on: :member
