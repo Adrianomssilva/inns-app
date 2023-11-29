@@ -19,7 +19,6 @@ class ReservationsController < ApplicationController
   def create
     @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build(reservation_params)
-    @reservation.user = current_user
     if @reservation.valid?
       session[:temp_reserve] = reservation_params.merge("total_value" => @reservation.total_value)
       redirect_to confirmation_new_room_reservation_path
