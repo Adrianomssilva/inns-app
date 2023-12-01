@@ -1,20 +1,21 @@
 
-<h2>Aqui estão suas rervas</h2>
+<h2>Aqui estão suas reservas</h2>
 
+<div class="row">
 <%if current_user.reservations.empty? %>
   <p>Você não possui reservas</p>
   <% else %>
   <% @reservations.each do |reserva| %>
-  <div class = 'reserva'>
-    Reserva: <%= reserva.code %> <br>
-    <%= reserva.room.name %> <br>
-    Data de entrada: <%= reserva.start_date %>
-    Status: <%=reserva.status  %>
-    <%= button_to "Cancelar reserva", cancel_reservation_path(reserva.id), {method: 'patch'}  %>
-    <% if reserva.finish?  %>
-      <%= link_to  "Acessar reserva", reservation_path(reserva.id) %>
-      <br>-------------------------------------------------
+    <div class = 'col-4'>
+      Reserva: <%= reserva.code %> <br>
+      <%= reserva.room.name %> <br>
+      Data de entrada: <%= reserva.start_date %>
+      Status: <%=reserva.status  %>
+      <%= button_to "Cancelar reserva", cancel_reservation_path(reserva.id), {method: 'patch'}  %>
+      <% if reserva.finish?  %>
+        <%= link_to  "Acessar reserva", reservation_path(reserva.id) %>
     <% end %>
+    </div>
   <% end %>
-  </div>
 <% end %>
+</div>

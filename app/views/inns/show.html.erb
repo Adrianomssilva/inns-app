@@ -1,6 +1,6 @@
 <h2><%=@inn.brand_name%> Rating: <%=@nota%></h2>
 
-<div class="detalhado">
+<div class="row">
   <dl>
       <dt>Telefone: </dt>
       <dd><%=@inn.phone%></dd>
@@ -20,13 +20,14 @@
       <dt>Politicas:</dt>
       <dd><%=@inn.policies%></dd>
       <dt>Descrição:</dt>
-      <dd><%=@inn.description%></dd>      
+      <dd><%=@inn.description%></dd>
     </dl>
 </div>
 
-<div class = "quartos">
+<div class = "row">
   <h3>Quartos</h3>
   <%@rooms.each do |room|%>
+    <div class="col">
       <dl>
         <dt><%=link_to room.name, new_room_reservation_path(room.id)%></dt>
         <dt>Descrição:</dt>
@@ -51,15 +52,19 @@
         <dd><%=room.safe%></dd>
         <dt>Acesso a PCD:</dt>
         <dd><%=room.pcd%></dd>
-      </dl> 
+      </dl>
+    </div>
   <% end %>
 </div>
 
-<div class="avaliacoes">
+<div class="row">
+  <h3>Avaliações</h3>
   <% @avaliations.last(3).each do |avaliation| %>
-    Quarto: <%= avaliation.reservation.room.name %>
-    Nota: <%= avaliation.rate %>
-    <%= avaliation.text %>
-    <% end %>
-    <%= link_to  "Ver mais", avaliations_inn_path(@inn) %>
+    <div class="col">
+      Quarto: <%= avaliation.reservation.room.name %>
+      Nota: <%= avaliation.rate %>
+      <%= avaliation.text %>
+      <% end %>
+      <%= link_to  "Ver mais", avaliations_inn_path(@inn) %>
+    </div>
 </div>

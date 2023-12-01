@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <%= stylesheet_link_tag "application" %>
   </head>
 
@@ -14,17 +14,22 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <h1>Encontre a Pousada perfeita</h1>
-      <nav class= "menu">
+      <nav =>
+        <div class="row align-items-start">
+          <div class='col-4'>
           <%= link_to  "Home", root_path %> | 
           <%= form_with(url: search_inns_path, method: :get ) do |f| %>
             <%= f.label :query, 'Buscar Pousada' %>
             <%= f.text_field :query%>
             <%= f.submit 'Buscar'%>
           <% end %>
+          </div>
+          <div class='col-8'>
           <% if user_signed_in? %>
               Usuário: <%=current_user.email%>
               <%= link_to 'Minhas reservas', my_reservations_path %>
               <%=button_to  "Sair", destroy_user_session_path, method: :delete%>
+            
           <% elsif owner_signed_in? %>
               <%=current_owner.email%>
               <%= link_to  "Minha pousada", my_inn_path %>
@@ -35,8 +40,12 @@
             <% else %>
               <%=link_to  "Entrar", login_index_path%>
           <% end %>
+          </div>
+        </div>
+
       </nav>
     </header>
     <%= yield %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

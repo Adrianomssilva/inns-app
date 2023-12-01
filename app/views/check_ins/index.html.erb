@@ -1,9 +1,10 @@
 <h2>Estadias ativas</h2>
 
-<div class = "card_reservas">
+<div class = "row">
   <%@rooms.each do |room| %>
     <% if room.reservations.any?%>
       <% room.reservations.active.each do |reserva|%>
+        <div class="col-4">
         <%= room.name %>
         Cod: <%=reserva.code%>
         Data de entrada: <%= reserva.start_date %>
@@ -11,6 +12,7 @@
         Número de hóspedes: <%= reserva.guest_number %>
         Status: <%= reserva.status %>
       <%= link_to 'Check-out',  new_reservation_check_out_path(reserva.id) %>
+      </div>
       <% end %>
     <% end %>
   <% end %>

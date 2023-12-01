@@ -6,32 +6,33 @@
   <% end %>
 </div>
 
-<div class="pousadas_recentes">
+<div class = "row">
   <h3>Pousadas Recentes</h3>
   <%@inns.last(3).each do |inn|%>
-    <div class="pousada">
+    <div class = "col-4">
       <h3><%=link_to inn.brand_name, inn_path(inn.id) %></h3>
       <dl>
         <dt>Cidade: </dt>
         <dd><%=inn.city %></dd>
       </dl>
+      </div>
     <% end %>
-    </div>
+    
 </div>
 
-<div class="pousadas">
+<div class="row">
   <h3>Pousadas</h3>
   <%@inns.each do |inn|%>
     <% if inn.presence_in(@inns.last(3))  %>
     
     <% else %>
-    <div class="pousada">
-      <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
-      <dl>
-        <dt>Cidade: </dt>
-        <dd><%=inn.city %></dd>
-      </dl>
+      <div class="col4">
+        <h4><%=link_to inn.brand_name, inn_path(inn.id) %></h4>
+        <dl>
+          <dt>Cidade: </dt>
+          <dd><%=inn.city %></dd>
+        </dl>
+      </div>
       <% end %>
   <% end %>
-    </div>
 </div>

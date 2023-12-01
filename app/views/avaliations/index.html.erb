@@ -1,7 +1,9 @@
 <h2>Avaliações <%= current_owner.inn.brand_name %></h2>
 
+<div class="row">
 <% if current_owner.inn.avaliations.any? %>
   <% @avaliations.each do |avaliacao|%>
+  <div class="col-4">
     Quarto: <%=avaliacao.reservation.room.name%>
     Nota: <%=avaliacao.rate%>
     <%=avaliacao.text%>
@@ -9,8 +11,10 @@
       <%= link_to 'Responder', new_avaliation_answer_path(avaliacao.id) %>
     <% else %>
       Resposta: <%= avaliacao.answer.text %>
+  </div>
     <% end %>
   <% end %>
 <% else %>
 <p>Não existem avaliaçoes para essa pousada</p>
 <% end %>
+</div>

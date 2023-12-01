@@ -1,49 +1,55 @@
 <h2>Reservas da <%= current_owner.inn.brand_name %></h2>
 
 <h3>Reservas confirmadas</h3>
-<div class = "card_reservas">
+<div class = "row">
   <%@rooms.each do |room| %>
     <% if room.reservations.any?%>
       <% room.reservations.pending.each do |reserva|%>
-        <%= room.name %>
-        Cod: <%=reserva.code%>
-        Data de entrada: <%= reserva.start_date %>
-        Data de saída: <%= reserva.end_date %>
-        Número de hóspedes: <%= reserva.guest_number %>
-        <%= button_to "Check-in", reservation_check_ins_path(reserva.id)%>
-        <%= button_to "Cancelar reserva", owner_cancel_reservation_path(reserva.id), {method: 'patch'}  %>
+        <div class = "col-4">
+            <%= room.name %>
+            Cod: <%=reserva.code%> <br>
+            Data de entrada: <%= reserva.start_date %>
+            Data de saída: <%= reserva.end_date %> <br>
+            Número de hóspedes: <%= reserva.guest_number %> <br>
+            <%= button_to "Check-in", reservation_check_ins_path(reserva.id)%>
+            <%= button_to "Cancelar reserva", owner_cancel_reservation_path(reserva.id), {method: 'patch'}  %>
+        </div>
       <% end %>
     <% end %>
   <% end %>
 </div>
 
 <h3>Reservas canceladas</h3>
-<div class = "card_reservas">
+<div class = "row">
   <%@rooms.each do |room| %>
     <% if room.reservations.any?%>
       <% room.reservations.canceled.each do |reserva|%>
-        <%= room.name %>
-        Cod: <%=reserva.code%>
-        Data de entrada: <%= reserva.start_date %>
-        Data de saída: <%= reserva.end_date %>
-        Número de hóspedes: <%= reserva.guest_number %>
-        Status: <%= reserva.status %>
+        <div class = "col-4">
+          <%= room.name %>
+          Cod: <%=reserva.code%> <br>
+          Data de entrada: <%= reserva.start_date %>
+          Data de saída: <%= reserva.end_date %> <br>
+          Número de hóspedes: <%= reserva.guest_number %> <br>
+          Status: <%= reserva.status %> <br>
+        </div>
       <% end %>
     <% end %>
   <% end %>
 </div>
 
 <h3>Reservas concluidas</h3>
-<div class = "card_reservas">
+<div class = "row">
   <%@rooms.each do |room| %>
     <% if room.reservations.any?%>
       <% room.reservations.finish.each do |reserva|%>
-        Cod: <%=reserva.code%>
-        Quarto: <%= room.name %>
-        Check-in: <%= reserva.check_in.entry %>
-        Check-out: <%= reserva.check_out.exit %>
-        Valor Total: <%= reserva.check_out.total %>
-        Status: <%= reserva.status %>
+        <div class = "col-4">
+          Cod: <%=reserva.code%>
+          Quarto: <%= room.name %> <br>
+          Check-in: <%= reserva.check_in.entry %>
+          Check-out: <%= reserva.check_out.exit %> <br>
+          Valor Total: <%= reserva.check_out.total %>
+          Status: <%= reserva.status %>
+        </div>
       <% end %>
     <% end %>
   <% end %>

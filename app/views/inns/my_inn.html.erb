@@ -7,7 +7,7 @@
   </div>
   <% else %>
   <h1><%=@inn.brand_name%></h1>
-  <div>
+  <div class = "row">
     <dl>
       <dt>Razão Social: </dt>
       <dd><%=@inn.corporate_name%></dd>
@@ -48,13 +48,13 @@
   
   
 
-<div>
+<div class = "row">
   <%= link_to  "Quartos", my_rooms_path %>
-  <div>
     <% if @inn.rooms.empty? %>
       <p>Clique em Quartos e adicione quartos!</p>
     <% else %>
       <%@inn.rooms.each do |room|%>
+        <div class="col-4">
           <dl>
             <dt>Quarto:</dt>
             <dd><%=room.name%></dd>
@@ -65,8 +65,10 @@
             <dt>Preço padrão:</dt>
             <dd><%=room.default_price%></dd>
           </dl>
+        </div>
       <% end %>
     <% end %>
+<div>
 
   
 <% end %>
