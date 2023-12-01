@@ -78,7 +78,7 @@ describe 'Owner faz o checkout de uma reserva em andamento' do
       fill_in "Forma de pagamento",	with: "Cartão"
       click_on 'Confirmar Check-out'
       # Assert
-      expect(page).to have_content 'Reservas Concluidas'
+      expect(page).to have_content 'Reservas concluidas'
       expect(page).to have_content "Cod: #{reserva.code}"
       expect(page).to have_content 'Quarto: quarto do beco'
       expect(page).to have_content "Check-in: #{reserva.check_in.entry}"

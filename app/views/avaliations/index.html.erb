@@ -1,4 +1,4 @@
-<h2>Avaliações da Pousada <%= current_owner.inn %></h2>
+<h2>Avaliações <%= current_owner.inn.brand_name %></h2>
 
 <% if current_owner.inn.avaliations.any? %>
   <% @avaliations.each do |avaliacao|%>

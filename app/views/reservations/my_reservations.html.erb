@@ -13,6 +13,7 @@
     <%= button_to "Cancelar reserva", cancel_reservation_path(reserva.id), {method: 'patch'}  %>
     <% if reserva.finish?  %>
       <%= link_to  "Acessar reserva", reservation_path(reserva.id) %>
+      <br>-------------------------------------------------
     <% end %>
   <% end %>
   </div>

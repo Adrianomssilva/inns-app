@@ -37,9 +37,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :inns, only: [:index, :show] do
-        get 'search', on: :collection
+        post 'search', on: :collection
         resources :rooms, only: [:index]
       end
+      resources :reservations, only: [:create]
       post 'availability', to: 'reservations#availability'
     end
   end

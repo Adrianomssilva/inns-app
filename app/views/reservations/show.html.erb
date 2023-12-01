@@ -9,9 +9,10 @@
   <% if @reservation.avaliation.nil?  %>
   <%= link_to  "Fazer uma avaliação", new_reservation_avaliation_path(@reservation.id) %>
   <% else %>
-  <p>Avaliação</p>
-  Nota: <%= @reservation.avaliation.rate%>
+  <p>Avaliação: <br>
+  Nota: <%= @reservation.avaliation.rate%> <br>
   <%= @reservation.avaliation.text%>
+  </p>
   <% if @reservation.avaliation.answer.present?%>
     <%= @reservation.room.inn.brand_name %>:  <%= @reservation.avaliation.answer.text %>
   <% end %>

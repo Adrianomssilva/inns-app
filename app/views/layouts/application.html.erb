@@ -23,6 +23,7 @@
           <% end %>
           <% if user_signed_in? %>
               Usuário: <%=current_user.email%>
+              <%= link_to 'Minhas reservas', my_reservations_path %>
               <%=button_to  "Sair", destroy_user_session_path, method: :delete%>
           <% elsif owner_signed_in? %>
               <%=current_owner.email%>
