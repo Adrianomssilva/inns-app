@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<div class = "row">
+<div class = "row" id="pousadas_recentes">
   <h3>Pousadas Recentes</h3>
   <%@inns.last(3).each do |inn|%>
     <div class = "col-4">
@@ -20,7 +20,7 @@
     
 </div>
 
-<div class="row">
+<div class="row" id="pousadas">
   <h3>Pousadas</h3>
   <%@inns.each do |inn|%>
     <% if inn.presence_in(@inns.last(3))  %>

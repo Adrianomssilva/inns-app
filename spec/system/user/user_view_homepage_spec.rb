@@ -73,12 +73,12 @@ describe "Usuário visita home" do
     visit root_path
 
     # Assert
-    within('div.pousadas_recentes') do
+    within('div#pousadas_recentes') do
       expect(page).to have_content 'Pousada amarela'
       expect(page).to have_content 'Pousada feliz'
       expect(page).to have_content 'Pousada azul'
     end
-    within('div.pousadas') do
+    within('div#pousadas') do
       expect(page).to have_content 'Pousada Alegre'
     end
 
