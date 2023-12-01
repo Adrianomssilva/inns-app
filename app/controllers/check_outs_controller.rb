@@ -1,18 +1,18 @@
 class CheckOutsController < ApplicationController
 
+  before_action :fetch_reserva, only: [:new, :create]
+
   def new
-    @reserva = Reservation.find(params[:reservation_id])
     @check_out = CheckOut.new
     @saida = Time.now
     @total = CheckOut.total_calculate(@reserva, @saida)
   end
 
   def create
-    @reservation = Reservation.find(params[:reservation_id])
     @check_out = CheckOut.new(check_out_params)
-    @check_out.reservation = @reservation
+    @check_out.reservation = @reserva
     if @check_out.save
-      @reservation.finish!
+      @reserva.finish!
       redirect_to reservations_path, notice: "Reserva encerrada com sucesso!"
     else
       flash.now[:notice] = 'Não foi possível encerra a reserva'
@@ -25,6 +25,10 @@ class CheckOutsController < ApplicationController
 
   def check_out_params
     params.require(:check_out).permit(:reservation_id, :exit, :total)
+  end
+
+  def fetch_reserva
+    @reserva = Reservation.find(params[:reservation_id])
   end
 
 end

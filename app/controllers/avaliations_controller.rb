@@ -2,19 +2,17 @@ class AvaliationsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_owner!, only: [:index]
-
+  before_action :fetch_reserva, only: [:new, :create]
   def index
     @avaliations = current_owner.inn.avaliations
 
   end
 
   def new
-    @reserva = Reservation.find(params[:reservation_id])
     @avaliation = Avaliation.new
   end
 
   def create
-    @reserva = Reservation.find(params[:reservation_id])
     @avaliation = Avaliation.new(avaliation_params)
     @avaliation.user = current_user
     @avaliation.reservation = @reserva
@@ -32,6 +30,10 @@ class AvaliationsController < ApplicationController
 
   def avaliation_params
     params.require(:avaliation).permit(:rate, :text, :reservation_id, :inn_id, :user_id)
+  end
+
+  def fetch_reserva
+    @reserva = Reservation.find(params[:reservation_id])
   end
 
 end

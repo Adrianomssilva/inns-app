@@ -2,22 +2,21 @@ class ReservationsController < ApplicationController
 
   before_action :authenticate_user!, only: [:confirmation]
   before_action :authenticate_owner!, only: [:index, :owner_cancel]
+  before_action :fetch_room, only: [:new, :create, :confirmation, :reservation_create]
+  before_action :fetch_reservation, only: [:show, :cancel, :owner_cancel]
+
 
   def index
     @rooms = current_owner.inn.rooms
   end
 
   def new
-    @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build
   end
 
-  def show
-    @reservation = Reservation.find(params[:id])
-  end
+  def show; end
 
   def create
-    @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build(reservation_params)
     if @reservation.valid?
       session[:temp_reserve] = reservation_params.merge("total_value" => @reservation.total_value)
@@ -29,12 +28,10 @@ class ReservationsController < ApplicationController
   end
 
   def confirmation
-    @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build(session[:temp_reserve])
   end
 
   def reservation_create
-    @room = Room.find(params[:room_id])
     @reservation = @room.reservations.build(session[:temp_reserve])
     @reservation.user = current_user
     if @reservation.save
@@ -52,8 +49,6 @@ class ReservationsController < ApplicationController
   end
 
   def cancel
-    @reservation = Reservation.find(params[:id])
-
     if Time.now <= @reservation.start_date - 7.days
       @reservation.canceled!
       redirect_to my_reservations_path, notice: 'Sua reserva foi cancelada'
@@ -64,8 +59,6 @@ class ReservationsController < ApplicationController
   end
 
   def owner_cancel
-    @reservation = Reservation.find(params[:id])
-
     if Time.now >= @reservation.start_date + 3.days
       @reservation.canceled!
       redirect_to reservations_path, notice: 'A reserva foi cancelada'
@@ -78,7 +71,14 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date, :room_id, :guest_number, :status, :total_value)
+  end
 
+  def fetch_room
+    @room = Room.find(params[:room_id])
+  end
+
+  def fetch_reservation
+    @reservation = Reservation.find(params[:id])
   end
 
 end

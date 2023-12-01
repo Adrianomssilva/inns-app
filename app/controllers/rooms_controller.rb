@@ -1,5 +1,8 @@
 class RoomsController < ApplicationController
+
   before_action :authenticate_owner!, only: [:new, :create, :edit, :update]
+  before_action :fetch_room, only: [:show, :edit, :update, :unavailable, :available]
+
   def new
     @room = Room.new
   end
@@ -15,20 +18,15 @@ class RoomsController < ApplicationController
     end
   end
 
-  def show
-    @room = Room.find(params[:id])
-  end
+  def show;  end
 
   def edit
-
-    @room = Room.find(params[:id])
     if current_owner != @room.inn.owner
       redirect_to my_rooms_path, notice: 'Você não tem acesso a esse quarto'
     end
   end
 
   def update
-    @room = Room.find(params[:id])
     if @room.update(room_params)
       redirect_to my_rooms_path, notice: 'Quarto editado com sucesso'
     else
@@ -38,15 +36,13 @@ class RoomsController < ApplicationController
   end
 
   def unavailable
-    room = Room.find(params[:id])
-    room.unavailable!
-    redirect_to my_rooms_path, notice: "#{room.name} indisponível"
+    @room.unavailable!
+    redirect_to my_rooms_path, notice: "#{@room.name} indisponível"
   end
 
   def available
-    room = Room.find(params[:id])
-    room.available!
-    redirect_to my_rooms_path, notice: "#{room.name} disponível"
+    @room.available!
+    redirect_to my_rooms_path, notice: "#{@room.name} disponível"
   end
 
   def my_rooms
@@ -57,6 +53,9 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :dimension, :capacity, :default_price, :bathroom, :balcony, :air_conditioning, :tv, :wardrobe, :safe, :pcd, :inn_id, :status)
+  end
 
+  def fetch_room
+    @room = Room.find(params[:id])
   end
 end

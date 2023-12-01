@@ -1,14 +1,13 @@
 class AnswersController < ApplicationController
 
   before_action :authenticate_owner!, only: [:new]
+  before_action :fecth_avaliation, only: [:new, :create]
 
   def new
-    @avaliation = Avaliation.find(params[:avaliation_id])
     @answer = Answer.new
   end
 
   def create
-    @avaliation = Avaliation.find(params[:avaliation_id])
     @answer = Answer.new(answer_params)
     @answer.avaliation = @avaliation
 
@@ -25,6 +24,10 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:text, :avaliation_id)
+  end
+
+  def fecth_avaliation
+    @avaliation = Avaliation.find(params[:avaliation_id])
   end
 
 end

@@ -1,14 +1,13 @@
 class PricesController < ApplicationController
 
   before_action :authenticate_owner!
+  before_action :fetch_room, only: [:new, :create]
 
   def new
-    @room = Room.find(params[:room_id])
     @price = Price.new
   end
 
   def create
-    @room = Room.find(params[:room_id])
     @price = Price.new(price_params)
     @price.room = @room
     if @price.save
@@ -24,5 +23,9 @@ class PricesController < ApplicationController
 
   def price_params
     params.require(:price).permit(:value, :date_start, :date_end, :room_id)
+  end
+
+  def fetch_room
+    @room = Room.find(params[:room_id])
   end
 end

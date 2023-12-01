@@ -1,5 +1,8 @@
 class InnsController < ApplicationController
+
   before_action :authenticate_owner!, only: [:new, :create, :my_inn, :edit, :update]
+  before_action :fetch_inn, only: [:edit, :update, :show, :avaliations, :publish, :hidden]
+
   def new
     @inn = Inn.new
   end
@@ -16,7 +19,6 @@ class InnsController < ApplicationController
   end
 
   def show
-    @inn = Inn.find(params[:id])
     @rooms = @inn.rooms.available
     @avaliations = @inn.avaliations
     if @avaliations.present?
@@ -27,7 +29,6 @@ class InnsController < ApplicationController
   end
 
   def avaliations
-    @inn = Inn.find(params[:id])
     @avaliations = @inn.avaliations
     if @avaliations.present?
       @nota = Inn.rating(@inn)
@@ -37,15 +38,12 @@ class InnsController < ApplicationController
   end
 
   def edit
-    @inn = Inn.find(params[:id])
     if @inn.owner != current_owner
       redirect_to root_path, notice: 'Você não tem acesso a essa Pousada'
     end
   end
 
   def update
-    @inn = Inn.find(params[:id])
-
     if @inn.update(inn_params)
       redirect_to my_inn_path, notice: 'Pousada editada com sucesso.'
 
@@ -71,14 +69,12 @@ class InnsController < ApplicationController
   end
 
   def publish
-    inn = Inn.find(params[:id])
-    inn.published!
+    @inn.published!
     redirect_to my_inn_path, notice: 'Sua Pousada foi publicada!'
   end
 
   def hidden
-    inn = Inn.find(params[:id])
-    inn.hidden!
+    @inn.hidden!
     redirect_to my_inn_path, notice: 'Sua Pousada saiu do ar!'
   end
 
@@ -86,6 +82,10 @@ class InnsController < ApplicationController
 
   def inn_params
     params.require(:inn).permit(:brand_name, :corporate_name, :registration_number, :phone, :email, :address, :neighborhood, :state, :city, :cep, :payment_options, :pets, :policies, :description, :check_in, :check_out, :owner_id, :status)
+  end
+
+  def fetch_inn
+    @inn = Inn.find(params[:id])
   end
 
 end
