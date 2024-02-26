@@ -1,8 +1,9 @@
 <h2>Bem vindo a Inns</h2>
 
-<div class="btn-menu">
+
+<div class="d-flex ">
   <%@cities.each do |inn|%>
-  <%= button_to  "#{inn.city}", search_inns_path, params: {query_city: "#{inn.city}"}, method: :get %>
+  <%= button_to  "#{inn.city}", search_inns_path, params: {query_city: "#{inn.city}"}, method: :get, class: 'btn btn-primary'%>
   <% end %>
 </div>
 
